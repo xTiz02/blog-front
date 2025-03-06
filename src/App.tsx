@@ -1,0 +1,38 @@
+import Navbar from "./components/nav/Navbar"
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
+import Home from "./components/page/Home"
+import { Search } from "lucide-react"
+import { SearchProvider } from "./context/search-context"
+import BlogFilter from "./components/page/BlogFilter"
+import Posts from "./components/filter/pages/Posts"
+import People from "./components/filter/pages/People"
+import Tags from "./components/filter/pages/Tags"
+import { FilterProvider } from "./context/filter-context"
+
+function App() {
+  return (
+    <Router>
+      <SearchProvider>
+        <FilterProvider>
+        <div className="relative flex flex-col bg-background">
+          <Navbar/>
+        </div>
+        <Routes>
+          
+            <Route path="" element={<Home />} />
+              <Route path="/filter" element={<BlogFilter />}>
+                <Route path="posts" element={<Posts />} />
+                <Route path="people" element={<People />} />
+                <Route path="tags" element={<Tags />} />
+              </Route>
+              {/* <Route path="/blog/list" element={<ProductPage />} /> */}
+          
+              
+        </Routes>
+        </FilterProvider>
+      </SearchProvider>
+    </Router>
+  )
+}
+
+export default App
