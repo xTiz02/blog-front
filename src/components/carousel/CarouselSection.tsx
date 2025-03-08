@@ -15,14 +15,23 @@ import { useNavigate } from 'react-router-dom'
   
 function CarouselSection({ cardList, categoryList }: { cardList?: CardBlog[], categoryList?: Topic[] }) {
   const navigate = useNavigate();
-  const searchParams = new URLSearchParams(location.search);
+  
 
   const navtoFilterPage = (category: Topic) => {
+    const searchParams = new URLSearchParams(location.search);
     if(searchParams.get("category") == category.title) {
       return;
     }
-    searchParams.set("category", category.title); 
-    navigate(`posts?${searchParams.toString()}`); 
+    if(searchParams.get("topic")){
+      searchParams.delete("topic");
+    }
+    searchParams.set("category", category.title);
+    if(location.pathname.includes("/filter/posts") || location.pathname.includes("/filter/people")) {
+      navigate(`posts?${searchParams.toString()}`);
+    }
+    if(location.pathname.includes("/filter/tags")) {
+      navigate(`tags?${searchParams.toString()}`);
+    }
   }
 
   return (

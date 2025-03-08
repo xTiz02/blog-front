@@ -51,10 +51,8 @@ function People() {
   }
 
   
-
-  console.log('People')
   return (
-    <div className='px-4 sm:px-16 sm:mr-5'>
+    <div className='px-4 sm:px-16 md:mr-5'>
       <div className='flex flex-row justify-center sm:justify-end'>
         <Select onValueChange={handPeopleOrderSelect} defaultValue='all'>
               <SelectTrigger
@@ -75,7 +73,7 @@ function People() {
         </Select>
       </div>
       
-      <div className="grid gap-y-2 sm:gap-y-4">
+      <div className="">
         
         {cards.map((card) => (
           <SocialCard key={card.id} card={card}/>

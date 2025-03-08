@@ -73,7 +73,7 @@ function Sidebar({
 
   return (
     <>
-    <div className='p-1 md:hidden'>
+    <div className='p-1 sm:hidden'>
       <Select value={val} onValueChange={handleSelect}>
         <SelectTrigger className='h-12 sm:w-48 w-full'>
           <SelectValue placeholder='Theme' />
@@ -94,11 +94,11 @@ function Sidebar({
     <ScrollArea
       //orientation='horizontal'
       type='always'
-      className='hidden w-full min-w-40 bg-background px-1 py-2 md:block'
+      className='hidden w-full min-w-40 bg-background px-1 py-2 sm:block'
     >
       <nav
         className={cn(
-          'flex space-x-2 py-1 lg:flex-col lg:space-x-0 lg:space-y-1',
+          'flex space-x-2 justify-center py-1 lg:flex-col lg:space-x-0 lg:space-y-1',
           className
         )}
         {...props}

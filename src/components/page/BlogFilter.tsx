@@ -2,18 +2,14 @@ import React, { useState } from 'react'
 import { Separator } from '../ui/separator'
 import Sidebar from '../filter/Sidebar'
 import { Outlet, Route, BrowserRouter as Router, Routes, useLocation, useNavigate } from "react-router-dom"
-import Posts from '../filter/pages/Posts'
 import { IoCloseCircleOutline } from "react-icons/io5";
-import People from '../filter/pages/People'
-import Tags from '../filter/pages/Tags'
 import { cn } from '@/lib/utils'
 import ContainerSection from '../filter/ContainerSection'
 
-import INITIAL_CATEGORY_DATA from '@/data/data'
+import {INITIAL_CATEGORY_DATA} from '@/data/data'
 import CarouselSection from '../carousel/CarouselSection'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { useFilter } from '@/context/filter-context'
 
 
 function BlogFilter() {
@@ -25,9 +21,18 @@ function BlogFilter() {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      searchParams.set("q", searchTerm); 
-      navigate(`posts?${searchParams.toString()}`); 
+    if(searchTerm.trim()) {
+      searchParams.set("q", searchTerm);
+      if(location.pathname.includes("/filter/posts")) {
+        navigate(`posts?${searchParams.toString()}`); 
+      }
+      if(location.pathname.includes("/filter/people")) {
+        navigate(`people?${searchParams.toString()}`);
+      }
+      if(location.pathname.includes("/filter/tags")) {
+        navigate(`tags?${searchParams.toString()}`);
+      }
+      
       setSearchTerm("");
     }
   };
@@ -38,7 +43,16 @@ function BlogFilter() {
 
   const handleReset = (param: string) => {
     searchParams.delete(param);
-    navigate("posts" + (searchParams.toString() ? `?${searchParams.toString()}` : ""));
+    
+    if(location.pathname.includes("/filter/posts")) {
+      navigate("posts"+(searchParams.toString() ? `?${searchParams.toString()}` : ""));
+    }
+    if(location.pathname.includes("/filter/people")) {
+      navigate("people"+(searchParams.toString() ? `?${searchParams.toString()}` : ""));
+    }
+    if(location.pathname.includes("/filter/tags")) {
+      navigate("tags"+(searchParams.toString() ? `?${searchParams.toString()}` : ""));
+    }
   };
   
   return (
@@ -95,6 +109,22 @@ function BlogFilter() {
                 Or by category
               </p>
             )}
+
+            {searchParams.get('topic') ? (
+              <div className="flex items-center justify-center space-x-1 pt-2">
+                <p className="text-center text-neutral-500">
+                Topic <strong>{searchParams.get("topic")} </strong> 
+                </p>
+                <Button variant="ghost" size="icon" className='mt-1 h-7 w-7 rounded-full text-amber-700'
+                onClick={()=>handleReset('topic')}>
+                    <IoCloseCircleOutline className="h-7 w-7 rotate-0 scale-100 transition-all" />
+                </Button>
+              </div>
+            ) : (
+              <p className="text-center text-neutral-500 pt-2">
+                Or by Topic
+              </p>
+            )}
           </div>
             
           <CarouselSection categoryList={INITIAL_CATEGORY_DATA}/>
@@ -104,7 +134,7 @@ function BlogFilter() {
           <div className='top-0 lg:sticky sm:px-4'>
             <Sidebar />
           </div>
-          <div className='flex w-full p-1 md:max-w-[800px]'>
+          <div className='flex w-full p-1 lg:max-w-[800px]'>
             <ContainerSection>
                <Outlet />
             </ContainerSection>

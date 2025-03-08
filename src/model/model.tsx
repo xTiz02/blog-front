@@ -86,10 +86,11 @@ interface FilterPeople{
   page: number
 }
 
-// interface FilterTopics{
-//   q: string
-//   categoryId: string
-// }
+interface FilterTopics{
+  q: string
+  category: string
+  page: number
+}
 
 
-export type {Message, User, Comment, SearchData, SearchGroup, Topic, TagType, CardBlog, CardSocial, PostOrderType, PostOrderDateBy, PeopleOrderType, FilterPosts, FilterPeople}
+export type {Message, User, Comment, SearchData, SearchGroup, Topic, TagType, CardBlog, CardSocial, PostOrderType, PostOrderDateBy, PeopleOrderType, FilterPosts, FilterPeople, FilterTopics}

@@ -103,4 +103,4 @@ const INITIAL_CATEGORY_DATA:Topic[] =[
     },
   ]
 
-  export default INITIAL_CATEGORY_DATA;
+  export {INITIAL_CATEGORY_DATA};

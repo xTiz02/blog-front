@@ -21,8 +21,9 @@ function Tag({
   const navigate = useNavigate()
 
   const navigateToFilter = () => {
-    navigate(`/filter/posts?tag=${tag.title}`)
+    navigate(`/filter/posts?topic=${tag.title}`)
   }
+  
   return (
     <Button
         size="sm"

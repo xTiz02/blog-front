@@ -1,6 +1,6 @@
-import React from 'react'
+
 import { Card } from '../ui/card';
-import { ArrowRight } from 'lucide-react';
+
 import { CiHeart } from 'react-icons/ci';
 import { LuMessageSquareDashed } from 'react-icons/lu';
 import { cn } from '@/lib/utils';
@@ -33,9 +33,9 @@ function BlogFilterCard({post} : {post: CardBlog}) {
               <div className="grid gap-y-4 sm:grid-cols-10 sm:gap-x-5 sm:gap-y-0 md:items-center md:gap-x-8 lg:gap-x-4">
                 <div className="sm:col-span-5">
                   <div className="mb-3 md:mb-4">
-                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 uppercase tracking-wider text-muted-foreground">
-                      {post.topics?.map((tag) => 
-                      <Tag key={tag.id} tag={tag} tagType='topic' className = "h-6 text-[10px] p-1 border-accent" />
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 tracking-wider text-muted-foreground">
+                      {post.topics?.map((topic) => 
+                      <Tag key={topic.id} tag={topic} tagType='topic' className = "h-6 text-[10px] p-1 border-accent" />
                       )}
                     </div>
                   </div>

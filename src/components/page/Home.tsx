@@ -8,14 +8,14 @@ import { Topic } from '@/model/model'
 import Tag from '../Tag'
 import {INITIAL_CARDBLOG} from '../card/card-data'
 
-import INITIAL_CATEGORY_DATA from '@/data/data'
+import {INITIAL_CATEGORY_DATA} from '@/data/data'
 function Home() {
 
   
   const [trendingPost, setTrendingPost] = useState(INITIAL_CARDBLOG);
 
-  const filterByTag = (tag: Topic) => {
-    console.log(tag)
+  const filterByTag = (topic: Topic) => {
+    console.log(topic)
     //fetch data from server
     //setTrendingPost(data)
   }
@@ -31,8 +31,8 @@ function Home() {
             Welcome to the place where you will find thoughts, ideas and stories.
           </p>
           <div className="flex flex-wrap md:gap-4 gap-x-1.5 gap-y-3  justify-center md:p-8">
-            {INITIAL_CATEGORY_DATA.map((tag) => (
-              <Tag tag={tag} key={tag.id} tagType='category' onTagClick={()=>filterByTag(tag)}/>
+            {INITIAL_CATEGORY_DATA.map((topic) => (
+              <Tag tag={topic} key={topic.id} tagType='category' onTagClick={()=>filterByTag(topic)}/>
             ))}
             {/* <Link
               to="/blog"

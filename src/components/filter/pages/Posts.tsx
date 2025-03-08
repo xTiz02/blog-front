@@ -25,7 +25,7 @@ function Posts() {
     const postFilter: FilterPosts = {
       q: searchParams.get("q") || "",
       category: searchParams.get("category") || "",
-      topic: searchParams.get("tag") || "",
+      topic: searchParams.get("topic") || "",
       orderType: selectOrder,
       orderDateBy: selectDate,
       page: 1,
@@ -47,7 +47,7 @@ function Posts() {
     const postFilter: FilterPosts = {
       q: searchParams.get("q") || "",
       category: searchParams.get("category") || "",
-      topic: searchParams.get("tag") || "",
+      topic: searchParams.get("topic") || "",
       orderType: selectOrder,
       orderDateBy: selectDate,
       page: currentPage, 
