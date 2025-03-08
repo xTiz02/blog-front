@@ -6,7 +6,7 @@ import BlogCard from '../card/BlogCard'
 import CarouselSection from '../carousel/CarouselSection'
 import { Topic } from '@/model/model'
 import Tag from '../Tag'
-import INITIAL_CARDBLOG from '../card/card-data'
+import {INITIAL_CARDBLOG} from '../card/card-data'
 
 import INITIAL_CATEGORY_DATA from '@/data/data'
 function Home() {

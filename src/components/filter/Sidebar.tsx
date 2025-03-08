@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { ScrollArea } from '../ui/scroll-area'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '../ui/button'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { SiGooglemessages } from "react-icons/si";
 
 
@@ -50,9 +50,9 @@ function Sidebar({
 }: SidebarNavProps){
 
   const navigate = useNavigate()
-  const searchParams = new URLSearchParams(location.search)
+  const location = useLocation()
   const [val, setVal] = useState(location.pathname)
-
+  const searchParams = new URLSearchParams(location.search)
 
   const handleSelect = (e: string) => {
     navigate(e+`?${searchParams.toString()}`)

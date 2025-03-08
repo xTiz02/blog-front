@@ -33,7 +33,7 @@ export function CommandMenu() {
 
   const pressedKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === 'Enter') {
-      navigate(`/filter/posts/?q=${val}`)
+      navigate(`/filter/posts?q=${val}`)
       setOpen(false)
     }
   }

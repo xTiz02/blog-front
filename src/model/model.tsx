@@ -52,33 +52,39 @@ interface CardBlog{
   date: string
   category: Topic
   user : User
-  topics?: string[]
+  topics?: Topic[]
   reactions: {
     count: number
     replys: number
   }
 }
 
+interface CardSocial{
+  id: string
+  description: string
+  user : User
+  followers: number
+}
+
 //Filter
-
-type PostOrderType = "popular" | "latest" | "oldest"
-
+type PostOrderType = "popular" | "news" | "oldest"| "all"
 type PostOrderDateBy = "lastmonth" | "lastweek" | "lastYear" | "last3months" | "last6months" | "all"
+type PeopleOrderType = "popular" | "news"| "all" //asc es por nombre, desc es por nombre inverso
 
-type PeopleOrderType = "asc" | "desc" | "popular" | "news"//asc es por nombre, desc es por nombre inverso
+interface FilterPosts{
+  q: string
+  category: string
+  topic: string
+  orderType: PostOrderType
+  orderDateBy: PostOrderDateBy
+  page: number
+}
 
-// interface FilterPosts{
-//   q: string
-//   categoryId: string
-//   topicId: string
-//   orderType: PostOrderType
-//   orderDateBy: PostOrderDateBy
-// }
-
-// interface FilterPeople{
-//   q: string
-//   orderType: PeopleOrderType
-// }
+interface FilterPeople{
+  q: string
+  orderType: PeopleOrderType
+  page: number
+}
 
 // interface FilterTopics{
 //   q: string
@@ -86,4 +92,4 @@ type PeopleOrderType = "asc" | "desc" | "popular" | "news"//asc es por nombre, d
 // }
 
 
-export type { SearchData, SearchGroup, Topic, CardBlog, Message, User, Comment , TagType, PostOrderType, PostOrderDateBy, PeopleOrderType}
+export type {Message, User, Comment, SearchData, SearchGroup, Topic, TagType, CardBlog, CardSocial, PostOrderType, PostOrderDateBy, PeopleOrderType, FilterPosts, FilterPeople}

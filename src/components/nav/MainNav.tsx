@@ -12,7 +12,7 @@ function MainNav() {
       <span className="font-bold">App</span>
     </Link>
     <Link
-      to="/filter"
+      to="/filter/posts"
       className={cn(
         "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
         //si el paht contiene /filter entonces el texto es foreground si no es foreground/60

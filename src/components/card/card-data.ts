@@ -1,4 +1,4 @@
-import { CardBlog } from "@/model/model";
+import { CardBlog, CardSocial } from "@/model/model";
 
 const INITIAL_CARDBLOG: CardBlog[] = [
     {
@@ -21,6 +21,7 @@ const INITIAL_CARDBLOG: CardBlog[] = [
             count: 10,
             replys: 2,
         },
+        topics: [{title:"Web Design", id:"1236"}, {title:"Web Design", id:"1237"},{title:"Web Design", id:"1238"}, {title:"Web Design", id:"1239"} ,{title:"Web Design", id:"1230"}],
     },
     {
         id: "2",
@@ -42,6 +43,7 @@ const INITIAL_CARDBLOG: CardBlog[] = [
             count: 10,
             replys: 2,
         },
+        topics: [{title:"Web Design", id:"1236"}, {title:"Web Design", id:"1237"},{title:"Web Design", id:"1238"}, {title:"Web Design", id:"1239"} ,{title:"Web Design", id:"1230"}],
     },
     {
         id: "3",
@@ -63,6 +65,7 @@ const INITIAL_CARDBLOG: CardBlog[] = [
             count: 10,
             replys: 2,
         },
+        topics: [{title:"Web Design", id:"1236"}, {title:"Web Design", id:"1237"},{title:"Web Design", id:"1238"}, {title:"Web Design", id:"1239"} ,{title:"Web Design", id:"1230"}],
     },
     {
         id: "4",
@@ -78,12 +81,13 @@ const INITIAL_CARDBLOG: CardBlog[] = [
         user: {
         id: "1",
         name: "Shadcn",
-        avatar: "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
+        avatar: "https://avatars.githubusercontent.com/u/127729578?s=200&v=4",
         },
         reactions: {
             count: 10,
             replys: 2,
         },
+        topics: [{title:"Web Design", id:"1236"}, {title:"Web Design", id:"1237"},{title:"Web Design", id:"1238"}],
     },
     {
         id: "5",
@@ -105,7 +109,43 @@ const INITIAL_CARDBLOG: CardBlog[] = [
             count: 10,
             replys: 2,
         },
+        topics: [{title:"Web Design", id:"1236"}, {title:"Web Design", id:"1237"},{title:"Web Design", id:"1238"}, {title:"Web Design", id:"1239"} ,{title:"Web Design", id:"1230"}],
     },
 ]
 
-export default INITIAL_CARDBLOG;
+
+const INITIAL_CARDSOCIAL: CardSocial[] = [
+    {
+        id: "1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        user: {
+        id: "1",
+        name: "Shadcn",
+        avatar: "https://www.pngarts.com/files/5/User-Avatar-PNG-Transparent-Image.png",
+        },
+        followers: 1000,
+    },
+    {
+        id: "2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        user: {
+        id: "1",
+        name: "Shadcn",
+        avatar: "https://img.freepik.com/premium-vector/cartoon-man-with-glasses-beard_481747-101434.jpg?semt=ais_hybrid",
+        },
+        followers: 1000,
+    },
+    {
+        id: "3",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        user: {
+        id: "1",
+        name: "Shadcn",
+        avatar: "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid",
+        },
+        followers: 1000,
+    }
+    
+]
+
+export {INITIAL_CARDBLOG, INITIAL_CARDSOCIAL }

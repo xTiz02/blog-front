@@ -52,15 +52,15 @@ function BlogCard({card} : {card: CardBlog}) {
         
         <CardFooter className='flex items-center justify-between'>
             <div className="flex items-center">
-            <a href="">
-                <Avatar className='h-8 w-8 mr-1.5 inline-flex'>
-                    <AvatarImage src={""} alt='@shadcn' />
+              <div className='inline-flex items-center'>
+                  <Avatar className='h-8 w-8 mr-2'>
+                    <AvatarImage src={card.user.avatar} alt='@shadcn' />
                     <AvatarFallback>SN</AvatarFallback>
-                </Avatar>
-                <span className="text-xs text-gray-600 dark:text-gray-400 font-medium ">
-                {card.user.name}
-                </span>
-            </a>
+                  </Avatar>
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-medium ">
+                  {card.user.name}
+                  </span>
+              </div>
             </div>
             <div className="text-xs text-gray-500 dark:text-gray-400">
                 <div className="flex items-center gap-4">

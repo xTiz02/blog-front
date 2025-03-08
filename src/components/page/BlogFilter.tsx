@@ -63,6 +63,7 @@ function BlogFilter() {
                 className="max-w-lg "
               />
           </form>
+          <div className='pb-3'>
             {searchParams.get('q') ? (
               <div className="flex items-center justify-center space-x-1">
                 <p className="text-center text-neutral-500">
@@ -74,13 +75,13 @@ function BlogFilter() {
                 </Button>
               </div>
             ) : (
-              <p className="text-center text-neutral-500">
+              <p className="text-center text-neutral-500 ">
                 Find your favorite topics and articles here by searching
               </p>
             )}
 
             {searchParams.get('category') ? (
-              <div className="flex items-center justify-center space-x-1">
+              <div className="flex items-center justify-center space-x-1 pt-2">
                 <p className="text-center text-neutral-500">
                   Category <strong>{searchParams.get("category")} </strong> 
                 </p>
@@ -90,10 +91,12 @@ function BlogFilter() {
                 </Button>
               </div>
             ) : (
-              <p className="text-center text-neutral-500">
+              <p className="text-center text-neutral-500 pt-2">
                 Or by category
               </p>
             )}
+          </div>
+            
           <CarouselSection categoryList={INITIAL_CATEGORY_DATA}/>
         </div>
         <Separator className='my-4 lg:my-6' />

@@ -2,29 +2,37 @@ import React from 'react'
 import { Button } from './ui/button'
 import { TagType, Topic } from '@/model/model'
 import { on } from 'events'
+import { cn } from '@/lib/utils'
+import { useNavigate } from 'react-router-dom'
 
 interface TagProps {
     tag: Topic
     tagType: TagType
     onTagClick?: () => void
+    className?: string
 }
 
 function Tag({
     tag,
     tagType,
-    onTagClick
+    onTagClick,
+    className
 }:TagProps) {
+  const navigate = useNavigate()
 
   const navigateToFilter = () => {
-    //Si es un topic o categoria
-    //router.push(`/search?${tagType}=${tag.id}`)
+    navigate(`/filter/posts?tag=${tag.title}`)
   }
   return (
     <Button
         size="sm"
         onClick={ onTagClick ? onTagClick : navigateToFilter}
         variant="outline"
-        className='text-muted-foreground'
+        className= {cn(
+            "'text-muted-foreground'",
+            className
+        )
+        }
         style={{
             opacity: 1,
             cursor: "pointer",

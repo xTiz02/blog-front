@@ -18,6 +18,9 @@ function CarouselSection({ cardList, categoryList }: { cardList?: CardBlog[], ca
   const searchParams = new URLSearchParams(location.search);
 
   const navtoFilterPage = (category: Topic) => {
+    if(searchParams.get("category") == category.title) {
+      return;
+    }
     searchParams.set("category", category.title); 
     navigate(`posts?${searchParams.toString()}`); 
   }

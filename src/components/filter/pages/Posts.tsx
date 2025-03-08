@@ -1,66 +1,126 @@
 
 import BlogFilterCard from '@/components/card/BlogFilterCard'
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Database } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { IoIosTime } from "react-icons/io";
+import { FaFilter } from "react-icons/fa6";
+import { CardBlog, FilterPosts, PostOrderDateBy, PostOrderType, Topic } from '@/model/model';
+import {INITIAL_CARDBLOG} from '@/components/card/card-data';
+import FilterPagination from '../FilterPagination';
 
-export interface Post {
-  id: string;
-  title: string;
-  summary: string;
-  label: string;
-  author: string;
-  published: string;
-  url: string;
-  image: string;
-  tags?: string[];
-}
-const INITIAL_POSTS: Post[] = [
-  {
-    id: "post-1",
-    title:
-      "Building Modern UIs: A Deep Dive into Shadcn and React Components",
-    summary:
-      "Join us for an in-depth exploration of building modern user interfaces using shadcn/ui and React. Learn best practices and advanced techniques.Join us for an in-depth exploration of building modern user interfaces using shadcn/ui and React. Learn best practices and advanced techniques.",
-    label: "Web Design",
-    author: "Sarah Chen",
-    published: "15 Feb 2024",
-    url: "https://shadcnblocks.com",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8m5y7sn6MveC7_iQcZXCQ_xlcr_SkHT1_7Q&s",
-    tags: ["Web Design", "UI Development"],
-  },
-  {
-    id: "post-2",
-    title: "Mastering Tailwind CSS: From Basics to Advanced Techniques",
-    summary:
-      "Discover how to leverage the full power of Tailwind CSS to create beautiful, responsive websites with clean and maintainable code.ss",
-    label: "Web Design",
-    author: "Michael Park",
-    published: "22 Feb 2024",
-    url: "https://shadcnblocks.com",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8m5y7sn6MveC7_iQcZXCQ_xlcr_SkHT1_7Q&s",
-    tags: ["Web Design", "CSS"],
-  },
-]
 
 function Posts() {
-  const [posts, setPosts] = useState<Post[]>(INITIAL_POSTS)
+  const [posts, setPosts] = useState<CardBlog[]>(INITIAL_CARDBLOG)
+  const [selectDate, setSelectDate] = useState<PostOrderDateBy>("all")
+  const [selectOrder, setSelectOrder] = useState<PostOrderType>("all")
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(10)
   const location = useLocation()
-  
+
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search)
-    if(searchParams.size > 0) {
-      
-    }else{
-      //setPosts([]) por defecto
-    }
-  }, [location])
+    const searchParams = new URLSearchParams(location.search);
+    
+    const postFilter: FilterPosts = {
+      q: searchParams.get("q") || "",
+      category: searchParams.get("category") || "",
+      topic: searchParams.get("tag") || "",
+      orderType: selectOrder,
+      orderDateBy: selectDate,
+      page: 1,
+    };
+
+    setCurrentPage((prev) => (prev !== 1 ? 1 : prev));
+    setTotalPages(10);
+
+    console.log("(Reset a página 1):", postFilter);
+  }, [location, selectDate, selectOrder]);
+
+ 
+  useEffect(() => {
+    
+    if (currentPage === 1) return;
+
+    const searchParams = new URLSearchParams(location.search);
+
+    const postFilter: FilterPosts = {
+      q: searchParams.get("q") || "",
+      category: searchParams.get("category") || "",
+      topic: searchParams.get("tag") || "",
+      orderType: selectOrder,
+      orderDateBy: selectDate,
+      page: currentPage, 
+    };
+
+    console.log("(Cambio de página):", postFilter);
+  }, [currentPage]);
+
+  const handDateSelect = (value: PostOrderDateBy) => {
+    setSelectDate(value)
+  }
+
+  const handleOrderSelect = (value: PostOrderType) => {
+    setSelectOrder(value)
+  }
 
   return (
-    <div className="grid gap-y-10 sm:grid-cols-12 sm:gap-y-12 md:gap-y-16 lg:gap-y-20">
-      {posts.map((post) => (
-        <BlogFilterCard post={post}/>
-      ))}
+    <div className='sm:pr-5'>
+      <div className='flex flex-row gap-x-3 justify-center sm:justify-end'>
+        <Select onValueChange={handDateSelect} defaultValue='all'>
+              <SelectTrigger
+                id="select-date"
+                className="relative ps-9"
+                aria-label="Select database"
+              >
+                <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 group-has-[[disabled]]:opacity-50">
+                  <IoIosTime  size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+                <SelectValue placeholder="-----" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="lastweek">lastweek</SelectItem>
+                <SelectItem value="lastmonth">lastmonth</SelectItem>
+                <SelectItem value="last3months">last3months</SelectItem>
+                <SelectItem value="last6months">last6months</SelectItem>
+                <SelectItem value="lastYear">lastYear</SelectItem>
+                <SelectItem value="all">All</SelectItem>
+              </SelectContent>
+        </Select>
+        <Select onValueChange={handleOrderSelect} defaultValue='all'>
+              <SelectTrigger
+                id="select-order"
+                className="relative ps-9"
+                aria-label="Select database"
+              >
+                <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 group-has-[[disabled]]:opacity-50">
+                  <FaFilter size={16} strokeWidth={2} aria-hidden="true" />
+                </div>
+                <SelectValue placeholder="-----" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="popular">popular</SelectItem>
+                <SelectItem value="news">news</SelectItem>
+                <SelectItem value="oldest">oldest</SelectItem>
+                <SelectItem value="all">All</SelectItem>
+              </SelectContent>
+        </Select>
+      </div>
+      
+      <div className="grid gap-y-2 sm:gap-y-4">
+        
+        {posts.map((post) => (
+          <BlogFilterCard key={post.id} post={post}/>
+        ))}
+       
+        
+      </div>
+      <div className='pt-3 sm:pt-16'>
+         <FilterPagination paginationItemsToDisplay={5} totalPages={totalPages} currentPage={currentPage} onPageChange={(page:number) =>{setCurrentPage(page)}}/>
+      </div>
+     
     </div>
+    
     
   )
 }
