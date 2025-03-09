@@ -21,7 +21,25 @@ function Tag({
   const navigate = useNavigate()
 
   const navigateToFilter = () => {
-    navigate(`/filter/posts?topic=${tag.title}`)
+    if(tagType === "category") {
+        const searchParams = new URLSearchParams(location.search);
+        if(searchParams.get("category") == tag.title) {
+        return;
+        }
+        if(searchParams.get("topic")){
+        searchParams.delete("topic");
+        }
+        searchParams.set("category", tag.title);
+        if(location.pathname.includes("/filter/posts") || location.pathname.includes("/filter/people")) {
+        navigate(`posts?${searchParams.toString()}`);
+        }
+        if(location.pathname.includes("/filter/tags")) {
+        navigate(`tags?${searchParams.toString()}`);
+        }
+    }else{
+        navigate(`/filter/posts?topic=${tag.title}`)
+    }
+    
   }
   
   return (
