@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 import { Button } from '../ui/button'
 import { YooptaContentValue } from '@yoopta/editor'
@@ -7,9 +7,25 @@ import { Input } from '../ui/input'
 import { ImagePlus, Trash2, Upload, X } from 'lucide-react'
 import { useImageUpload } from '@/hooks/user-image-upload'
 import { cn } from '@/lib/utils'
+import { useTags } from '@/hooks/use-tags'
+
+
+interface Tag {
+  id: string;
+  label: string;
+  color?: string;
+}
+
+const DEMO_SUGGESTIONS:Tag[] = [
+  { id: "next", label: "Next.js" },
+  { id: "react", label: "React" },
+  { id: "tailwind", label: "Tailwind" },
+  { id: "typescript", label: "TypeScript" },
+  { id: "ui", label: "UI" },
+];
 
 function PublishDialog({data}:{data:YooptaContentValue}) {
-
+    console.log("publish dialog")
     const {
     previewUrl,
     fileName,
@@ -61,6 +77,50 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
     },[handleFileChange],)
 
 
+    const [inputValue, setInputValue] = useState("");
+    const [results, setResults] = useState<Tag[]>([]); 
+    const [showResults, setShowResults] = useState<boolean>(false); 
+    const { tags, addTag, removeTag, removeLastTag, hasReachedMax } = useTags({
+      maxTags: 4,
+      onChange: (tags) => console.log("Tags updated:", tags),
+    });
+  
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === "Backspace" && !inputValue) {
+        e.preventDefault();
+        removeLastTag();
+      }
+      if (e.key === "Enter" && inputValue) {
+        e.preventDefault();
+        addTag({ id: inputValue.toLowerCase(), label: inputValue });
+        setInputValue("");
+      }
+    };
+
+    useEffect(() => {
+      if (inputValue.length < 2) {
+        setResults([]); 
+        setShowResults(false);
+        return;
+      }
+  
+      const delaySearch = setTimeout(() => {
+        fetch(`https://api.ejemplo.com/busqueda?q=${inputValue}`)
+          .then(res => res.json())
+          .then(data => {
+            setResults(data); 
+            setShowResults(true);
+          })
+          .catch(err => console.error(err))
+          //.finally(() => setLoading(false));
+      }, 500);
+  
+      return () => clearTimeout(delaySearch); // Limpiar timeout si el usuario sigue escribiendo
+    }, [inputValue]);
+    
+    
+
+
 
   return (
     <Dialog>
@@ -68,28 +128,84 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
         <Button variant="outline">Publish</Button>
       </DialogTrigger>
       <DialogContent className="flex flex-col gap-0 p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg [&>button:last-child]:hidden">
-        <ScrollArea className="flex max-h-1/2 flex-col">
+        <ScrollArea className="flex min-h-full flex-col">
           <DialogHeader className="contents space-y-0 text-left">
-            <DialogTitle className="px-6 pt-6">Frequently Asked Questions (FAQ)</DialogTitle>
+            <DialogTitle className="px-6 pt-6">Complete this fields to Publish Post</DialogTitle>
             <DialogDescription asChild>
               <div className="p-6">
                 <div className="space-y-4 [&_strong]:font-semibold [&_strong]:text-foreground">
-                  
-                <div className="w-full max-w-md space-y-6 rounded-xl border border-border bg-card p-6 shadow-sm">
-                    <div className="space-y-2">
-                        <h3 className="text-lg font-medium">Image Upload</h3>
-                        <p className="text-sm text-muted-foreground">
-                        Supported formats: JPG, PNG, GIF
-                        </p>
+                  <div className="w-full space-y-4">
+                    <div className="w-full space-y-2">
+                      <div>
+                        <label className="text-sm font-medium">Tags <span className='text-muted-foreground text-[12px]'> : (Max 4)</span></label>
+                      </div>
+                      <div className="rounded-lg border border-input bg-background p-1">
+                        <div className="flex flex-wrap gap-1">
+                          {tags.map((tag) => (
+                            <span
+                              key={tag.id}
+                              className={cn(
+                                "inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm",
+                                tag.color || "bg-primary/10 text-primary"
+                              )}
+                            >
+                              {tag.label}
+                              <button
+                                onClick={() => removeTag(tag.id)}
+                                className="rounded-full p-0.5 hover:bg-black/10 dark:hover:bg-white/20"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          ))}
+                          <input
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder={hasReachedMax ? "Max tags reached" : "Add tag..."}
+                            disabled={hasReachedMax}
+                            className="flex-1 bg-transparent px-2 py-1 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
+                          />
+                        </div>
+                      </div>
                     </div>
+                    {showResults && (
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">Suggestions</label>
+                      <div className="flex flex-wrap gap-2">
+                        {results.map((suggestion) => (
+                          <Button
+                            key={suggestion.id}
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                              if (!tags.find(t => t.id === suggestion.id)) {
+                                addTag(suggestion);
+                              }
+                            }}
+                            disabled={hasReachedMax || tags.find(t => t.id === suggestion.id) && true}
+                          >
+                            {suggestion.label}
+                          </Button>
+                        ))}
+                      </div>
+                    </div> )}
+                  </div>
+                  <div className="w-full space-y-6 rounded-xl border border-border bg-card p-6 shadow-sm">
+                      <div className="space-y-2">
+                          <h3 className="text-lg font-medium">Image Upload</h3>
+                          <p className="text-sm text-muted-foreground">
+                          Supported formats: JPG, PNG, GIF
+                          </p>
+                      </div>
 
-                    <Input
-                        type="file"
-                        accept="image/x-png,image/gif,image/jpeg"
-                        className="hidden"
-                        ref={fileInputRef}
-                        onChange={handleFileChange}
-                    />
+                      <Input
+                          type="file"
+                          accept="image/x-png,image/gif,image/jpeg"
+                          className="hidden"
+                          ref={fileInputRef}
+                          onChange={handleFileChange}
+                      />
 
                     {!previewUrl ? (
                         <div
@@ -156,7 +272,8 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
                         )}
                         </div>
                     )}
-                    </div>
+                  </div>
+                  
                 </div>
               </div>
             </DialogDescription>

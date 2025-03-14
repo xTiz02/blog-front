@@ -107,8 +107,10 @@ function Write() {
   }, []);
 
   
+  
   return (
     <div className='flex flex-col justify-center items-center lg:w-full py-8 gap-12'>
+      
       <YooptaEditor style={editorStyle}
       //width={300}
       editor={editor}
