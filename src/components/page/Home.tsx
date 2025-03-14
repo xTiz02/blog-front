@@ -14,7 +14,7 @@ function Home() {
   
   const [trendingPost, setTrendingPost] = useState(INITIAL_CARDBLOG);
 
-  const filterByTag = (topic: Topic) => {
+  const filterTrendingByTag = (topic: Topic) => {
     console.log(topic)
     //fetch data from server
     //setTrendingPost(data)
@@ -32,7 +32,7 @@ function Home() {
           </p>
           <div className="flex flex-wrap md:gap-4 gap-x-1.5 gap-y-3  justify-center md:p-8">
             {INITIAL_CATEGORY_DATA.map((topic) => (
-              <Tag tag={topic} key={topic.id} tagType='category' onTagClick={()=>filterByTag(topic)}/>
+              <Tag tag={topic} key={topic.id} tagType='category' onTagClick={()=>filterTrendingByTag(topic)}/>
             ))}
             {/* <Link
               to="/blog"

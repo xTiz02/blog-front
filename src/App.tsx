@@ -8,6 +8,7 @@ import Posts from "./components/filter/pages/Posts"
 import People from "./components/filter/pages/People"
 import Tags from "./components/filter/pages/Tags"
 import { FilterProvider } from "./context/filter-context"
+import Write from "./components/page/Write"
 
 function App() {
   return (
@@ -20,12 +21,13 @@ function App() {
         <Routes>
           
             <Route path="" element={<Home />} />
-              <Route path="/filter" element={<BlogFilter />}>
-                <Route path="posts" element={<Posts />} />
-                <Route path="people" element={<People />} />
-                <Route path="tags" element={<Tags />} />
-              </Route>
-              {/* <Route path="/blog/list" element={<ProductPage />} /> */}
+            <Route path="/write" element={<Write />} />
+            <Route path="/filter" element={<BlogFilter />}>
+              <Route path="posts" element={<Posts />} />
+              <Route path="people" element={<People />} />
+              <Route path="tags" element={<Tags />} />
+            </Route>
+            {/* <Route path="/blog/list" element={<ProductPage />} /> */}
           
               
         </Routes>
