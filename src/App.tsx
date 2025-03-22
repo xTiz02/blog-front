@@ -1,20 +1,18 @@
 import Navbar from "./components/nav/Navbar"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import Home from "./components/page/Home"
-import { Search } from "lucide-react"
 import { SearchProvider } from "./context/search-context"
 import BlogFilter from "./components/page/BlogFilter"
 import Posts from "./components/filter/pages/Posts"
 import People from "./components/filter/pages/People"
 import Tags from "./components/filter/pages/Tags"
-import { FilterProvider } from "./context/filter-context"
 import Write from "./components/page/Write"
 
 function App() {
   return (
     <Router>
       <SearchProvider>
-        <FilterProvider>
+        
         <div className="relative flex flex-col bg-background">
           <Navbar/>
         </div>
@@ -31,7 +29,7 @@ function App() {
           
               
         </Routes>
-        </FilterProvider>
+        
       </SearchProvider>
     </Router>
   )

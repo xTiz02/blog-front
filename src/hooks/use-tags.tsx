@@ -58,7 +58,6 @@ export function useTags({
 
     return {
         tags,
-        setTags,
         addTag,
         removeTag,
         removeLastTag,

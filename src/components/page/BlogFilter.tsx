@@ -4,7 +4,6 @@ import Sidebar from '../filter/Sidebar'
 import { Outlet, Route, BrowserRouter as Router, Routes, useLocation, useNavigate } from "react-router-dom"
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { cn } from '@/lib/utils'
-import ContainerSection from '../filter/ContainerSection'
 
 import {INITIAL_CATEGORY_DATA} from '@/data/data'
 import CarouselSection from '../carousel/CarouselSection'
@@ -135,12 +134,10 @@ function BlogFilter() {
             <Sidebar />
           </div>
           <div className='flex w-full p-1 lg:max-w-[800px]'>
-            <ContainerSection>
                <Outlet />
-            </ContainerSection>
-          </div>
+          </div> 
           <div className='top-0 lg:sticky'>
-              DerechaDerecha Derecha Derecha
+              DerechaDerecha Derecha DerechaDerechaDerecha
           </div> 
           
         </div>
