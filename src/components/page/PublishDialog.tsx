@@ -16,13 +16,13 @@ interface Tag {
   color?: string;
 }
 
-const DEMO_SUGGESTIONS:Tag[] = [
-  { id: "next", label: "Next.js" },
-  { id: "react", label: "React" },
-  { id: "tailwind", label: "Tailwind" },
-  { id: "typescript", label: "TypeScript" },
-  { id: "ui", label: "UI" },
-];
+interface PublishData{
+  tags: Tag[];
+  image: File;
+  data: YooptaContentValue;
+}
+
+
 
 function PublishDialog({data}:{data:YooptaContentValue}) {
     console.log("publish dialog")
@@ -118,7 +118,31 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
       return () => clearTimeout(delaySearch); // Limpiar timeout si el usuario sigue escribiendo
     }, [inputValue]);
     
-    
+
+
+    const publishPost = () => {
+      const publishData:PublishData = {
+        tags: tags,
+        image: file!,
+        data: data
+      }
+      console.log(publishData)
+      
+      const formData: FormData = new FormData();
+
+      formData.append("image",publishData.image);
+      formData.append("tags",JSON.stringify(publishData.tags));
+      formData.append("data",JSON.stringify(publishData.data));
+
+      fetch("https://api.ejemplo.com/publish",{
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.error(err))
+
+    }
 
 
 
@@ -133,8 +157,8 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
             <DialogTitle className="px-6 pt-6">Complete this fields to Publish Post</DialogTitle>
             <DialogDescription asChild>
               <div className="p-6">
-                <div className="space-y-4 [&_strong]:font-semibold [&_strong]:text-foreground">
-                  <div className="w-full space-y-4">
+                <div className="space-y-7 [&_strong]:font-semibold [&_strong]:text-foreground">
+                  
                     <div className="w-full space-y-2">
                       <div>
                         <label className="text-sm font-medium">Tags <span className='text-muted-foreground text-[12px]'> : (Max 4)</span></label>
@@ -190,103 +214,102 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
                         ))}
                       </div>
                     </div> )}
-                  </div>
-                  <div className="w-full space-y-6 rounded-xl border border-border bg-card p-6 shadow-sm">
-                      <div className="space-y-2">
-                          <h3 className="text-lg font-medium">Image Upload</h3>
-                          <p className="text-sm text-muted-foreground">
-                          Supported formats: JPG, PNG, GIF
-                          </p>
-                      </div>
-
-                      <Input
-                          type="file"
-                          accept="image/x-png,image/gif,image/jpeg"
-                          className="hidden"
-                          ref={fileInputRef}
-                          onChange={handleFileChange}
-                      />
-
-                    {!previewUrl ? (
-                        <div
-                        onClick={handleThumbnailClick}
-                        onDragOver={handleDragOver}
-                        onDragEnter={handleDragEnter}
-                        onDragLeave={handleDragLeave}
-                        onDrop={handleDrop} //cuando se suelta el archivo en el area de drop
-                        className={cn(
-                            "flex h-64 cursor-pointer flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-muted-foreground/25 bg-muted/50 transition-colors hover:bg-muted",
-                            isDragging && "border-primary/50 bg-primary/5",
-                        )}
-                        >
-                        <div className="rounded-full bg-background p-3 shadow-sm">
-                            <ImagePlus className="h-6 w-6 text-muted-foreground" />
-                        </div>
-                        <div className="text-center">
-                            <p className="text-sm font-medium">Click to select</p>
-                            <p className="text-xs text-muted-foreground">
-                            or drag and drop file here
-                            </p>
-                        </div>
-                        </div>
-                    ) : (
-                        <div className="relative">
-                        <div className="group relative h-64 overflow-hidden rounded-lg border">
-                            <img
-                            src={previewUrl}
-                            alt="Preview"
-                           
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
-                            <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
-                            <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-                            <Button
-                                size="sm"
-                                variant="secondary"
-                                onClick={handleThumbnailClick}
-                                className="h-9 w-9 p-0"
-                            >
-                                <Upload className="h-4 w-4" />
-                            </Button>
-                            <Button
-                                size="sm"
-                                variant="destructive"
-                                onClick={handleRemove}
-                                className="h-9 w-9 p-0"
-                            >
-                                <Trash2 className="h-4 w-4" />
-                            </Button>
-                            </div>
-                        </div>
-                        {fileName && (
-                            <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                            <span className="truncate">{fileName}</span>
-                            <button
-                                onClick={handleRemove}
-                                className="ml-auto rounded-full p-1 hover:bg-muted"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                            </div>
-                        )}
-                        </div>
-                    )}
-                  </div>
                   
-                </div>
+                    <div className="w-full space-y-2">
+                      <div>
+                        <label className="text-sm font-medium">Upload Image :</label>
+                      </div>
+                      <div className="w-full space-y-6 rounded-xl border border-border bg-card p-6 shadow-sm">
+                        
+                          <div className="space-y-2">
+                              <p className="text-sm text-muted-foreground">
+                              Supported formats: JPG, PNG, GIF
+                              </p>
+                          </div>
+
+                          <Input
+                              type="file"
+                              accept="image/x-png,image/gif,image/jpeg"
+                              className="hidden"
+                              ref={fileInputRef}
+                              onChange={handleFileChange}
+                          />
+
+                        {!previewUrl ? (
+                            <div
+                            onClick={handleThumbnailClick}
+                            onDragOver={handleDragOver}
+                            onDragEnter={handleDragEnter}
+                            onDragLeave={handleDragLeave}
+                            onDrop={handleDrop} //cuando se suelta el archivo en el area de drop
+                            className={cn(
+                                "flex h-64 cursor-pointer flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-muted-foreground/25 bg-muted/50 transition-colors hover:bg-muted",
+                                isDragging && "border-primary/50 bg-primary/5",
+                            )}
+                            >
+                            <div className="rounded-full bg-background p-3 shadow-sm">
+                                <ImagePlus className="h-6 w-6 text-muted-foreground" />
+                            </div>
+                            <div className="text-center">
+                                <p className="text-sm font-medium">Click to select</p>
+                                <p className="text-xs text-muted-foreground">
+                                or drag and drop file here
+                                </p>
+                            </div>
+                            </div>
+                        ) : (
+                            <div className="relative">
+                            <div className="group relative h-64 overflow-hidden rounded-lg border">
+                                <img
+                                src={previewUrl}
+                                alt="Preview"
+                              
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
+                                <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                                <Button
+                                    size="sm"
+                                    variant="secondary"
+                                    onClick={handleThumbnailClick}
+                                    className="h-9 w-9 p-0"
+                                >
+                                    <Upload className="h-4 w-4" />
+                                </Button>
+                                <Button
+                                    size="sm"
+                                    variant="destructive"
+                                    onClick={handleRemove}
+                                    className="h-9 w-9 p-0"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                </Button>
+                                </div>
+                            </div>
+                            {fileName && (
+                                <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
+                                <span className="truncate">{fileName}</span>
+                                <button
+                                    onClick={handleRemove}
+                                    className="ml-auto rounded-full p-1 hover:bg-muted"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                                </div>
+                            )}
+                            </div>
+                        )}
+                      </div>
+                      </div>
+                    </div>
               </div>
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="px-6 pb-6 sm:justify-start">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">
-                Cancel
-              </Button>
-            </DialogClose>
-            <DialogClose asChild>
-              <Button type="button">Okay</Button>
-            </DialogClose>
+          <DialogFooter className="px-6 pb-6 sm:justify-center">
+            
+              <Button type="button" onClick={publishPost} disabled={tags.length === 0 || file == null}>Publish</Button>
+            
           </DialogFooter>
         </ScrollArea>
       </DialogContent>
