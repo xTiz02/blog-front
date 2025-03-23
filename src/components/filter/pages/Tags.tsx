@@ -7,40 +7,27 @@ import { INITIAL_CATEGORY_DATA } from '@/data/data'
 
 function Tags() {
   const [topics, setTopics] = useState<Topic[]>(INITIAL_CATEGORY_DATA)
-  const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(10)
   const location = useLocation()
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
+  const getData = async (page:number) => {
+     const searchParams = new URLSearchParams(location.search);
     
     const socialFilter: FilterTopics = {
       q: searchParams.get("q") || "",
       category: searchParams.get("category") || "",
-      page: 1,
+      page: page,
     };
 
-    setCurrentPage((prev) => (prev !== 1 ? 1 : prev));
     setTotalPages(10);
 
-    console.log("(Reset a página 1):", socialFilter);
-  }, [location]);
+    console.log("(Obtener datos):", socialFilter);
+  }
 
- 
   useEffect(() => {
-    
-    if (currentPage === 1) return;
-
-    const searchParams = new URLSearchParams(location.search);
-
-    const socialFilter: FilterTopics = {
-      q: searchParams.get("q") || "",
-      category: searchParams.get("category") || "",
-      page: currentPage, 
-    };
-
-    console.log("(Cambio de página):", socialFilter);
-  }, [currentPage]);
+    getData(1)
+  }, [location]);
+  
 
 
   return (
@@ -55,7 +42,13 @@ function Tags() {
         
       </div>
       <div className='pt-10 sm:pt-16'>
-         <FilterPagination paginationItemsToDisplay={5} totalPages={totalPages} currentPage={currentPage} onPageChange={(page:number) =>{setCurrentPage(page)}}/>
+      <FilterPagination 
+         paginationItemsToDisplay={5} 
+         onPageChange={(page)=>{
+            getData(page)
+            return totalPages;
+          }} 
+          />
       </div>
      
     </div>

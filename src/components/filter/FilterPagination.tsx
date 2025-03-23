@@ -5,17 +5,16 @@ import { usePagination } from '@/hooks/use-pagination';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { PostOrderDateBy, PostOrderType } from '@/model/model';
+import { PeopleOrderType, PostOrderDateBy, PostOrderType } from '@/model/model';
 
 interface FilterProps {
-  selectDate: PostOrderDateBy
-  selectOrder: PostOrderType
+  selectDate?: PostOrderDateBy
+  selectOrder?: PostOrderType
+  selectPeopleOrder?: PeopleOrderType
 }
 
-
-
 type PaginationProps = {
-  filter: FilterProps;
+  filter?: FilterProps;
   paginationItemsToDisplay?: number;
   onPageChange: (page: number) => number;
 };
