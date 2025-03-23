@@ -1,85 +1,74 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../ui/pagination'
 import { useNavigate } from 'react-router-dom';
 import { usePagination } from '@/hooks/use-pagination';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-// interface PaginationProps {
-//   currentPage: number;
-//   totalPages: number;
-//   //onPageChange: (page: number) => void;
-// }
-// function FilterPagination({
-//   currentPage,
-//   totalPages,
-// }: PaginationProps) {
-//     //const [currentPage, setCurrentPage] = useState(1);
-//     const navigate = useNavigate();
+import { PostOrderDateBy, PostOrderType } from '@/model/model';
 
-//     const onPageChange = (page: number) => {
-//       const searchParams = new URLSearchParams(location.search)
-//       if(searchParams.get("page") && (parseInt(searchParams.get("page")!) === page)) {
-//         return;
-//       }
-//       searchParams.set("page", page.toString());
-//       //setCurrentPage(page);
-//       navigate(`?${searchParams.toString()}`)
-//     }
-//   return (
-//     <Pagination>
-//     <PaginationContent>
-//       <PaginationItem>
-//           <PaginationPrevious onClick={() => {
-            
-//             navigate("?page=3")}
-//             } />
-//       </PaginationItem>
-//       {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-//         <PaginationItem key={page}>
-//           <PaginationLink
-//             onClick={() => onPageChange(page)}
-//             isActive={currentPage === page}
-//           >
-//             {page + ":" +currentPage}
-//           </PaginationLink>
-//         </PaginationItem>
-//       ))}
-//       <PaginationItem>
-//         <PaginationNext onClick={() => {navigate("?page=3")}} />
-//       </PaginationItem>
-//     </PaginationContent>
-//   </Pagination>
-//   )
-// }
+interface FilterProps {
+  selectDate: PostOrderDateBy
+  selectOrder: PostOrderType
+}
+
+
 
 type PaginationProps = {
-  currentPage: number;
+  filter: FilterProps;
   totalPages: number;
   paginationItemsToDisplay?: number;
   onPageChange: (page: number) => void;
 };
 
 function FilterPagination({
-  currentPage,
+  filter,
   totalPages,
   paginationItemsToDisplay = 5,
   onPageChange,
 }: PaginationProps) {
   
+  const [currentPage, setCurrentPage] = useState(1);
   const { pages, showLeftEllipsis, showRightEllipsis } = usePagination({
     currentPage,
     totalPages,
     paginationItemsToDisplay,
+    //onChangeRange: (page) => {console.log("Se actualiza la página y rangos:", page)}
   });
 
-  const handlePageChange = (page: number) => (e: React.MouseEvent) => {
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
+
+  const handleAddPageChange = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (page >= 1 && page <= totalPages) {
-      console.log(page)
+    if (currentPage < totalPages) {
+      const page = currentPage + 1;
+      console.log("handleAddPageChange",page)
       onPageChange(page);
+      setCurrentPage(page);
     }
   };
+
+  const handleReducePageChange = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (currentPage > 1) {
+      const page = currentPage - 1;
+      console.log("handleReducePageChange",page)
+      onPageChange(page);
+      setCurrentPage(page);
+    }
+  }
+
+  const handlePageChange = (page: number,e: React.MouseEvent) => {
+    e.preventDefault();
+    if (page >= 1 && page <= totalPages && page !== currentPage) {
+      console.log("handlePageChange",page)
+      onPageChange(page);
+      setCurrentPage(page);
+    }
+    
+  }
 
   return (
     <Pagination>
@@ -93,7 +82,7 @@ function FilterPagination({
               "rounded-none border-0 shadow-none focus-visible:z-10 aria-disabled:pointer-events-none [&[aria-disabled]>svg]:opacity-50",
             )}
             href="#"
-            onClick={handlePageChange(currentPage - 1)}
+            onClick={handleReducePageChange}
             aria-label="Go to previous page"
             aria-disabled={currentPage === 1}
           >
@@ -127,7 +116,7 @@ function FilterPagination({
                 page === currentPage && "bg-accent hover:bg-accent/80",
               )}
               href="#"
-              onClick={handlePageChange(page)}
+              onClick={(e) => handlePageChange(page,e)}
               isActive={page === currentPage}
             >
               {page}
@@ -159,7 +148,7 @@ function FilterPagination({
               "rounded-none border-0 shadow-none focus-visible:z-10 aria-disabled:pointer-events-none [&[aria-disabled]>svg]:opacity-50",
             )}
             href="#"
-            onClick={handlePageChange(currentPage + 1)}
+            onClick={handleAddPageChange}
             aria-label="Go to next page"
             aria-disabled={currentPage === totalPages}
           >

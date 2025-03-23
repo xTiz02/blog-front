@@ -2,6 +2,7 @@ type UsePaginationProps = {
     currentPage: number;
     totalPages: number;
     paginationItemsToDisplay: number;
+    //onChangeRange: (page: number) => void;
   };
   
   type UsePaginationReturn = {
@@ -14,6 +15,7 @@ type UsePaginationProps = {
     currentPage,
     totalPages,
     paginationItemsToDisplay,
+    //onChangeRange,
   }: UsePaginationProps): UsePaginationReturn {
     const showLeftEllipsis = currentPage - 1 > paginationItemsToDisplay / 2;
     const showRightEllipsis = totalPages - currentPage + 1 > paginationItemsToDisplay / 2;
@@ -43,11 +45,13 @@ type UsePaginationProps = {
   
       if (showLeftEllipsis) adjustedRange.start++;
       if (showRightEllipsis) adjustedRange.end--;
-  
+      
+      console.log("Se actualiza la página y rangos:", currentPage)
       return Array.from(
         { length: adjustedRange.end - adjustedRange.start + 1 },
         (_, i) => adjustedRange.start + i,
       );
+
     }
   
     const pages = calculatePaginationRange();

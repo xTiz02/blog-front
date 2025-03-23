@@ -6,55 +6,55 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { IoIosTime } from "react-icons/io";
 import { FaFilter } from "react-icons/fa6";
-import { CardBlog, FilterPosts, PostOrderDateBy, PostOrderType, Topic } from '@/model/model';
+import { CardBlog, FilterPosts, PostOrderDateBy, PostOrderType } from '@/model/model';
 import {INITIAL_CARDBLOG} from '@/components/card/card-data';
 import FilterPagination from '../FilterPagination';
+
 
 
 function Posts() {
   const [posts, setPosts] = useState<CardBlog[]>(INITIAL_CARDBLOG)
   const [selectDate, setSelectDate] = useState<PostOrderDateBy>("all")
   const [selectOrder, setSelectOrder] = useState<PostOrderType>("all")
-  const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(10)
   const location = useLocation()
 
-  useEffect(() => {
+  const getData = async (page:number) => {
     const searchParams = new URLSearchParams(location.search);
-    
     const postFilter: FilterPosts = {
       q: searchParams.get("q") || "",
       category: searchParams.get("category") || "",
       topic: searchParams.get("topic") || "",
       orderType: selectOrder,
       orderDateBy: selectDate,
-      page: 1,
+      page: page,
     };
 
-    setCurrentPage((prev) => (prev !== 1 ? 1 : prev));
     setTotalPages(10);
 
-    console.log("(Reset a página 1):", postFilter);
-  }, [location, selectDate, selectOrder]);
+    console.log("(Obtener datos):", postFilter);
+  }
+
+  useEffect(() => {
+    getData(1)
+  }, [ location,selectDate, selectOrder]);
 
  
-  useEffect(() => {
-    
-    if (currentPage === 1) return;
+  // useEffect(() => {
 
-    const searchParams = new URLSearchParams(location.search);
+  //   const searchParams = new URLSearchParams(location.search);
 
-    const postFilter: FilterPosts = {
-      q: searchParams.get("q") || "",
-      category: searchParams.get("category") || "",
-      topic: searchParams.get("topic") || "",
-      orderType: selectOrder,
-      orderDateBy: selectDate,
-      page: currentPage, 
-    };
+  //   const postFilter: FilterPosts = {
+  //     q: searchParams.get("q") || "",
+  //     category: searchParams.get("category") || "",
+  //     topic: searchParams.get("topic") || "",
+  //     orderType: selectOrder,
+  //     orderDateBy: selectDate,
+  //     page: currentPage, 
+  //   };
 
-    console.log("(Cambio de página):", postFilter);
-  }, [currentPage]);
+  //   console.log("(Cambio de página):", postFilter);
+  // }, [currentPage]);
 
   const handDateSelect = (value: PostOrderDateBy) => {
     setSelectDate(value)
@@ -116,7 +116,7 @@ function Posts() {
         
       </div>
       <div className='pt-3 sm:pt-16'>
-         <FilterPagination paginationItemsToDisplay={5} totalPages={totalPages} currentPage={currentPage} onPageChange={(page:number) =>{setCurrentPage(page)}}/>
+         <FilterPagination paginationItemsToDisplay={5} totalPages={totalPages}  onPageChange={(page)=>{getData(page)}} filter={{selectDate,selectOrder}}/>
       </div>
      
     </div>

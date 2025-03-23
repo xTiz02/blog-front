@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { JSX, useEffect, useRef, useState } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { ScrollArea } from '../ui/scroll-area'
 import { cn } from '@/lib/utils'

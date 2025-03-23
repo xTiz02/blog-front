@@ -16,6 +16,7 @@ function App() {
         <div className="relative flex flex-col bg-background">
           <Navbar/>
         </div>
+        </SearchProvider>
         <Routes>
           
             <Route path="" element={<Home />} />
@@ -31,7 +32,7 @@ function App() {
         </Routes>
         
         
-      </SearchProvider>
+      
     </Router>
   )
 }
