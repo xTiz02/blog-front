@@ -16,19 +16,19 @@ interface FilterProps {
 
 type PaginationProps = {
   filter: FilterProps;
-  totalPages: number;
   paginationItemsToDisplay?: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (page: number) => number;
 };
 
 function FilterPagination({
   filter,
-  totalPages,
   paginationItemsToDisplay = 5,
   onPageChange,
 }: PaginationProps) {
   
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(10);
+  
   const { pages, showLeftEllipsis, showRightEllipsis } = usePagination({
     currentPage,
     totalPages,
@@ -45,7 +45,8 @@ function FilterPagination({
     if (currentPage < totalPages) {
       const page = currentPage + 1;
       console.log("handleAddPageChange",page)
-      onPageChange(page);
+      const totalPage = onPageChange(page);
+      setTotalPages(totalPage);
       setCurrentPage(page);
     }
   };
@@ -55,7 +56,8 @@ function FilterPagination({
     if (currentPage > 1) {
       const page = currentPage - 1;
       console.log("handleReducePageChange",page)
-      onPageChange(page);
+      const totalPage = onPageChange(page);
+      setTotalPages(totalPage);
       setCurrentPage(page);
     }
   }
@@ -64,7 +66,8 @@ function FilterPagination({
     e.preventDefault();
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       console.log("handlePageChange",page)
-      onPageChange(page);
+      const totalPage = onPageChange(page);
+      setTotalPages(totalPage);
       setCurrentPage(page);
     }
     

@@ -116,7 +116,13 @@ function Posts() {
         
       </div>
       <div className='pt-3 sm:pt-16'>
-         <FilterPagination paginationItemsToDisplay={5} totalPages={totalPages}  onPageChange={(page)=>{getData(page)}} filter={{selectDate,selectOrder}}/>
+         <FilterPagination 
+         paginationItemsToDisplay={5} 
+         onPageChange={(page)=>{
+            getData(page)
+            return totalPages;
+          }} 
+          filter={{selectDate,selectOrder}}/>
       </div>
      
     </div>
