@@ -7,6 +7,7 @@ import Posts from "./components/filter/pages/Posts"
 import People from "./components/filter/pages/People"
 import Tags from "./components/filter/pages/Tags"
 import Write from "./components/page/Write"
+import PostPage from "./components/page/PostPage"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           
             <Route path="" element={<Home />} />
             <Route path="/write" element={<Write />} />
+            <Route path="/post/id" element={<PostPage />} />
             <Route path="/filter" element={<BlogFilter />}>
               <Route path="posts" element={<Posts />} />
               <Route path="people" element={<People />} />

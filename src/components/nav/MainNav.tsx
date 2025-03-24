@@ -40,6 +40,15 @@ function MainNav() {
     >
       Write
     </Link>
+    <Link
+      to="/post/id"
+      className={cn(
+        "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
+        location.pathname.includes("post/id") ? "text-foreground" : "text-foreground/60"
+      )}
+    >
+      Example
+    </Link>
   </nav>
   )
 }

@@ -24,7 +24,7 @@ interface PublishData{
 
 
 
-function PublishDialog({data}:{data:YooptaContentValue}) {
+function PublishDialog({data}:{data?:YooptaContentValue}) {
     console.log("publish dialog")
     const {
     previewUrl,
@@ -124,7 +124,7 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
       const publishData:PublishData = {
         tags: tags,
         image: file!,
-        data: data
+        data: data!
       }
       console.log(publishData)
       

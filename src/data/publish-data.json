@@ -639,7 +639,7 @@
                 "bgColor":null,
                 "fit":"contain",
                 "sizes":{
-                   "width":400,
+                   "width":300,
                    "height":400
                 },
                 "nodeType":"void"
