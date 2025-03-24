@@ -1,236 +1,679 @@
 {
-    "beb4f6e7-c8ef-4f20-9a03-9106ff04dd51": {
-        "id": "beb4f6e7-c8ef-4f20-9a03-9106ff04dd51",
-        "type": "Paragraph",
-        "value": [
-            {
-                "id": "e4e02232-2088-405b-b31f-60c2c57b417e",
-                "type": "paragraph",
-                "children": [
-                    {
-                        "text": "lol"
-                    }
-                ]
-            }
-        ],
-        "meta": {
-            "align": "left",
-            "depth": 0,
-            "order": 0
-        }
-    },
-    "dba08ab5-a008-4d58-b34f-290bee1d0334": {
-        "id": "dba08ab5-a008-4d58-b34f-290bee1d0334",
-        "type": "File",
-        "meta": {
-            "depth": 0,
-            "order": 1
-        },
-        "value": [
-            {
-                "id": "65087ddb-e287-4ab9-9758-bf1019e6aa05",
-                "type": "file",
-                "props": {
-                    "size": 0,
-                    "name": null,
-                    "src": null,
-                    "format": null,
-                    "nodeType": "void"
-                },
-                "children": [
-                    {
-                        "text": ""
-                    }
-                ]
-            }
-        ]
-    },
-    "77552cb5-d182-4e97-8d7c-1a147560c0e9": {
-        "id": "77552cb5-d182-4e97-8d7c-1a147560c0e9",
-        "type": "Paragraph",
-        "value": [
-            {
-                "id": "da2cfd93-3a6f-42c1-b473-b488fdb77ceb",
-                "type": "paragraph",
-                "children": [
-                    {
-                        "text": ""
-                    }
-                ]
-            }
-        ],
-        "meta": {
-            "align": "left",
-            "depth": 0,
-            "order": 3
-        }
-    },
-    "c778dd29-8ede-4141-9f21-eb63c0541757": {
-        "id": "c778dd29-8ede-4141-9f21-eb63c0541757",
-        "type": "Image",
-        "meta": {
-            "depth": 0,
-            "order": 2
-        },
-        "value": [
-            {
-                "id": "86f5fa5e-84b1-4799-80e4-70848c4d64ce",
-                "type": "image",
-                "props": {
-                    "src": "data:image/png;base64,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",
-                    "alt": null,
-                    "srcSet": null,
-                    "bgColor": null,
-                    "fit": "contain",
-                    "sizes": {
-                        "width": 300,
-                        "height": 231
-                    },
-                    "nodeType": "void"
-                },
-                "children": [
-                    {
-                        "text": ""
-                    }
-                ]
-            }
-        ]
-    },
-    "c660c7fe-ed03-4c0a-88f8-3212186d26e5": {
-        "id": "c660c7fe-ed03-4c0a-88f8-3212186d26e5",
-        "type": "Code",
-        "meta": {
-            "depth": 0,
-            "order": 4
-        },
-        "value": [
-            {
-                "id": "fe252816-fbb9-4b3a-bbc0-5ff91cdaa822",
-                "type": "code",
-                "props": {
-                    "nodeType": "void",
-                    "language": "javascript",
-                    "theme": "VSCode"
-                },
-                "children": [
-                    {
-                        "text": "sdasdas"
-                    }
-                ]
-            }
-        ]
-    },
-    "40aaa3f4-b34b-4399-8b0c-8190f62328e8": {
-        "id": "40aaa3f4-b34b-4399-8b0c-8190f62328e8",
-        "type": "Callout",
-        "meta": {
-            "depth": 0,
-            "order": 5
-        },
-        "value": [
-            {
-                "id": "16aba7a6-7069-4a5f-9734-7ecb10e2a229",
-                "type": "callout",
-                "props": {
-                    "theme": "success"
-                },
-                "children": [
-                    {
-                        "text": ""
-                    }
-                ]
-            }
-        ]
-    },
-    "3aa4feb4-72c4-4cec-9d7e-718a7448b512": {
-        "id": "3aa4feb4-72c4-4cec-9d7e-718a7448b512",
-        "type": "NumberedList",
-        "meta": {
-            "depth": 0,
-            "order": 6
-        },
-        "value": [
-            {
-                "id": "428c4da5-ed8d-4ff9-92e2-eab0a440e3b6",
-                "type": "numbered-list",
-                "props": {
-                    "nodeType": "block"
-                },
-                "children": [
-                    {
-                        "text": "q"
-                    }
-                ]
-            }
-        ]
-    },
-    "7cfad647-c3d7-427e-81cb-8dbb6749eb2c": {
-        "id": "7cfad647-c3d7-427e-81cb-8dbb6749eb2c",
-        "type": "NumberedList",
-        "value": [
-            {
-                "id": "0299573c-073d-4283-a325-d6fb7df5b31f",
-                "type": "numbered-list",
-                "children": [
-                    {
-                        "text": "w"
-                    }
-                ],
-                "props": {
-                    "nodeType": "block"
+    "5d7392f7-294c-405a-abd7-306304415f2a":{
+       "id":"5d7392f7-294c-405a-abd7-306304415f2a",
+       "type":"HeadingOne",
+       "value":[
+          {
+             "id":"30f16075-ca8b-4a8c-88d5-1f453a3181cd",
+             "type":"heading-one",
+             "children":[
+                {
+                   "text":"Introducción al Lenguaje de Programación Java"
                 }
-            }
-        ],
-        "meta": {
-            "align": "left",
-            "depth": 0,
-            "order": 7
-        }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":0
+       }
     },
-    "20bb36ec-fc57-457d-9463-48391b0ac5d8": {
-        "id": "20bb36ec-fc57-457d-9463-48391b0ac5d8",
-        "type": "NumberedList",
-        "value": [
-            {
-                "id": "f4ba6233-7d62-4341-b4d2-c6349b910c9d",
-                "type": "numbered-list",
-                "children": [
-                    {
-                        "text": "e"
-                    }
-                ],
-                "props": {
-                    "nodeType": "block"
+    "cae800f7-81a2-4282-b895-3cf4f14fd0ce":{
+       "id":"cae800f7-81a2-4282-b895-3cf4f14fd0ce",
+       "type":"Paragraph",
+       "value":[
+          {
+             "id":"bcf920dd-f726-428a-9b79-72a1101534d0",
+             "type":"paragraph",
+             "children":[
+                {
+                   "text":"Java es uno de los lenguajes de programación más populares y utilizados en el mundo del desarrollo de software. Es un lenguaje de programación de alto nivel, orientado a objetos y multiplataforma, lo que significa que puede ejecutarse en diferentes sistemas operativos sin necesidad de modificar el código fuente."
                 }
-            }
-        ],
-        "meta": {
-            "align": "left",
-            "depth": 0,
-            "order": 8
-        }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":1
+       }
     },
-    "2b974533-68b8-4c5b-8ba9-1f078c717771": {
-        "id": "2b974533-68b8-4c5b-8ba9-1f078c717771",
-        "type": "NumberedList",
-        "value": [
-            {
-                "id": "cc956a4b-4f01-4d53-9abe-ae3ca9a14e44",
-                "type": "numbered-list",
-                "children": [
-                    {
-                        "text": "r"
-                    }
-                ],
-                "props": {
-                    "nodeType": "block"
+    "13ff3a72-99dc-4c4c-a17c-1d17dc160e40":{
+       "id":"13ff3a72-99dc-4c4c-a17c-1d17dc160e40",
+       "type":"HeadingTwo",
+       "value":[
+          {
+             "id":"1c3b023d-bf06-461c-9b64-ded98ef2a1f4",
+             "type":"heading-two",
+             "children":[
+                {
+                   "text":"Características Principales de Java"
                 }
-            }
-        ],
-        "meta": {
-            "align": "left",
-            "depth": 0,
-            "order": 9
-        }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":3
+       }
+    },
+    "f64ff7ba-b695-40c7-95cf-07f6b7e051f8":{
+       "id":"f64ff7ba-b695-40c7-95cf-07f6b7e051f8",
+       "type":"BulletedList",
+       "meta":{
+          "depth":0,
+          "order":4
+       },
+       "value":[
+          {
+             "id":"34258f47-926f-4584-aaea-2dc21cdd5c2f",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "text":"Orientado a objetos:",
+                   "bold":true
+                },
+                {
+                   "text":" Todo en Java es un objeto."
+                },
+                {
+                   "bold":true,
+                   "text":" "
+                }
+             ]
+          }
+       ]
+    },
+    "66d2a0e2-58d6-4cc1-a9ad-a7f7dca7984c":{
+       "id":"66d2a0e2-58d6-4cc1-a9ad-a7f7dca7984c",
+       "type":"BulletedList",
+       "meta":{
+          "depth":0,
+          "order":5
+       },
+       "value":[
+          {
+             "id":"71e10e8f-3ae2-4dd1-977d-373d03cc5a89",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "text":"Independiente de la plataforma:",
+                   "bold":true
+                },
+                {
+                   "text":" Gracias a la máquina virtual de Java (JVM), el código puede ejecutarse en cualquier sistema operativo."
+                }
+             ]
+          }
+       ]
+    },
+    "87048b58-ae27-42d2-ab85-44783a9398d1":{
+       "id":"87048b58-ae27-42d2-ab85-44783a9398d1",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"aee2a7a4-d0d5-40e2-8d88-c5a50068897b",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "text":"Robusto y seguro:",
+                   "bold":true
+                },
+                {
+                   "text":" Ofrece un fuerte manejo de excepciones y seguridad en la ejecución."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":6
+       }
+    },
+    "39a1e307-c45b-4e6b-874c-10e215a06054":{
+       "id":"39a1e307-c45b-4e6b-874c-10e215a06054",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"356a495a-e888-45a8-a025-41f0f2366e00",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "text":"Multihilo (Multithreading):",
+                   "bold":true
+                },
+                {
+                   "text":" Permite la ejecución de múltiples hilos de procesamiento simultáneamente."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":7
+       }
+    },
+    "33bc12ec-ab84-42d7-aa1b-1e69b364122d":{
+       "id":"33bc12ec-ab84-42d7-aa1b-1e69b364122d",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"b607645f-91f4-48a1-91d8-a41f6914338b",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "text":"Gran comunidad y soporte:",
+                   "bold":true
+                },
+                {
+                   "text":" Es utilizado en una amplia variedad de aplicaciones, desde aplicaciones empresariales hasta dispositivos móviles."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":8
+       }
+    },
+    "4347f10c-650b-4551-95b5-463b6997db23":{
+       "id":"4347f10c-650b-4551-95b5-463b6997db23",
+       "type":"HeadingTwo",
+       "value":[
+          {
+             "id":"91f19eb1-0bbf-4efb-bace-ce90b9716414",
+             "type":"heading-two",
+             "children":[
+                {
+                   "text":"Instalación de Java"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":10
+       }
+    },
+    "70046804-0704-4698-9265-1eb3fc47c83b":{
+       "id":"70046804-0704-4698-9265-1eb3fc47c83b",
+       "type":"Paragraph",
+       "value":[
+          {
+             "id":"d30e05af-078a-409f-b8eb-8bf64ff33b57",
+             "type":"paragraph",
+             "children":[
+                {
+                   "text":"Para empezar a programar en Java, necesitas instalar el "
+                },
+                {
+                   "text":"JDK (Java Development Kit)",
+                   "bold":true
+                },
+                {
+                   "text":". Puedes descargarlo desde el sitio oficial:"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":11
+       }
+    },
+    "5e4a5da3-7e2e-4fca-bd7b-e94a7acc7125":{
+       "id":"5e4a5da3-7e2e-4fca-bd7b-e94a7acc7125",
+       "type":"Callout",
+       "meta":{
+          "depth":0,
+          "order":12
+       },
+       "value":[
+          {
+             "id":"31824e4e-9303-4ffe-b2da-fd896ccb1067",
+             "type":"callout",
+             "props":{
+                "theme":"info"
+             },
+             "children":[
+                {
+                   "text":""
+                },
+                {
+                   "id":"46af9f64-3fe5-4b84-899d-33929a469182",
+                   "type":"link",
+                   "children":[
+                      {
+                         "text":"Descargar JDK desde Oracle"
+                      }
+                   ],
+                   "props":{
+                      "title":"Descargar JDK desde Oracle",
+                      "url":"https://www.oracle.com/java/technologies/javase-downloads.html",
+                      "target":"_self",
+                      "rel":"noopener noreferrer",
+                      "nodeType":"inline"
+                   }
+                },
+                {
+                   "text":""
+                }
+             ]
+          }
+       ]
+    },
+    "6cb42f73-6a01-4b1f-a082-b972bfa08d70":{
+       "id":"6cb42f73-6a01-4b1f-a082-b972bfa08d70",
+       "type":"HeadingTwo",
+       "value":[
+          {
+             "id":"d06bf9bd-3296-4b5a-94f4-83d73dfaa4b7",
+             "type":"heading-two",
+             "children":[
+                {
+                   "text":"Ejemplo de un Programa en Java"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":13
+       }
+    },
+    "f448353b-2a90-404b-9282-3650dbdb6913":{
+       "id":"f448353b-2a90-404b-9282-3650dbdb6913",
+       "type":"Paragraph",
+       "value":[
+          {
+             "id":"4dcd3b23-f452-49e7-ae1a-ed33a085ca10",
+             "type":"paragraph",
+             "children":[
+                {
+                   "text":"A continuación, se muestra un sencillo programa en Java que imprime \"Hola, mundo\" en la consola:"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":14
+       }
+    },
+    "1b2f10a0-b544-4b32-b4b5-86d0eda2580f":{
+       "id":"1b2f10a0-b544-4b32-b4b5-86d0eda2580f",
+       "type":"Code",
+       "meta":{
+          "depth":0,
+          "order":15
+       },
+       "value":[
+          {
+             "id":"249321c5-d78b-41a1-8c35-d1e0ab69a66e",
+             "type":"code",
+             "props":{
+                "nodeType":"void",
+                "language":"java",
+                "theme":"VSCode"
+             },
+             "children":[
+                {
+                   "text":"public class HolaMundo {\n    public static void main(String[] args) {\n        System.out.println(\"Hola, mundo!\");\n    }\n}"
+                }
+             ]
+          }
+       ]
+    },
+    "cabcf173-5fa5-48e6-bde1-ef1d547ab0e3":{
+       "id":"cabcf173-5fa5-48e6-bde1-ef1d547ab0e3",
+       "type":"Paragraph",
+       "value":[
+          {
+             "id":"43c9085f-7040-45d1-a4ab-edc4a28d3509",
+             "type":"paragraph",
+             "children":[
+                {
+                   "text":" "
+                },
+                {
+                   "text":"Nota:",
+                   "bold":true
+                },
+                {
+                   "text":" Para compilar y ejecutar este programa, puedes usar los siguientes comandos en la terminal:"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":16
+       }
+    },
+    "6eaf5002-61aa-4d89-a705-b524a5384eb6":{
+       "id":"6eaf5002-61aa-4d89-a705-b524a5384eb6",
+       "type":"Code",
+       "meta":{
+          "depth":0,
+          "order":17
+       },
+       "value":[
+          {
+             "id":"4406d786-4563-4142-8397-da2732b0b122",
+             "type":"code",
+             "props":{
+                "nodeType":"void",
+                "language":"bash",
+                "theme":"VSCode"
+             },
+             "children":[
+                {
+                   "text":"javac HolaMundo.java   # Compila el archivo Java\njava HolaMundo         # Ejecuta el programa compilado"
+                }
+             ]
+          }
+       ]
+    },
+    "d4969ca8-3fdb-4089-baa7-e8b30aa85fbe":{
+       "id":"d4969ca8-3fdb-4089-baa7-e8b30aa85fbe",
+       "type":"HeadingTwo",
+       "value":[
+          {
+             "id":"9fe4f3ac-a525-49ec-967f-0f6ad9dd5a40",
+             "type":"heading-two",
+             "children":[
+                {
+                   "text":"Aplicaciones de Java"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":18
+       }
+    },
+    "6aa33649-1dad-4547-b14d-001f7f65d7ff":{
+       "id":"6aa33649-1dad-4547-b14d-001f7f65d7ff",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"a585bc13-85b9-4ad8-9688-7fcb42df0864",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "bold":true,
+                   "text":"Desarrollo web: "
+                },
+                {
+                   "text":"Frameworks como Spring Boot permiten crear aplicaciones web robustas."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":19
+       }
+    },
+    "cb572f18-7753-4967-a5b3-7f9a55e3bb86":{
+       "id":"cb572f18-7753-4967-a5b3-7f9a55e3bb86",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"c725aee4-bc78-41e5-b786-1dc3df565449",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "bold":true,
+                   "text":"Aplicaciones empresariales: "
+                },
+                {
+                   "text":"Java es ampliamente utilizado en aplicaciones de negocio."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":20
+       }
+    },
+    "5c1bbd4e-5eb0-41c8-9a1b-520bb1b55f3c":{
+       "id":"5c1bbd4e-5eb0-41c8-9a1b-520bb1b55f3c",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"c5f5979d-fae4-4203-a262-7b4e2b5a80ae",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "bold":true,
+                   "text":"Aplicaciones Android: "
+                },
+                {
+                   "text":"La mayoría de las apps en Android están desarrolladas en Java o Kotlin."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":21
+       }
+    },
+    "a9b133a9-20cf-4e39-8ae7-956ce27a022c":{
+       "id":"a9b133a9-20cf-4e39-8ae7-956ce27a022c",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"f6d34080-ff66-4a95-878c-29411cae8f0e",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "bold":true,
+                   "text":"Computación en la nube: "
+                },
+                {
+                   "text":"Java es compatible con múltiples soluciones en la nube como AWS y Azure."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":22
+       }
+    },
+    "d4d23ffa-58c2-467d-83b8-1b4736b25739":{
+       "id":"d4d23ffa-58c2-467d-83b8-1b4736b25739",
+       "type":"BulletedList",
+       "value":[
+          {
+             "id":"1834b297-2910-46be-948e-24065cd734df",
+             "type":"bulleted-list",
+             "children":[
+                {
+                   "bold":true,
+                   "text":"Big Data y Machine Learning: "
+                },
+                {
+                   "text":"Tecnologías como Apache Hadoop y Spark usan Java."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":23
+       }
+    },
+    "d931c01c-f893-4005-b8a0-27225a3a006f":{
+       "id":"d931c01c-f893-4005-b8a0-27225a3a006f",
+       "type":"HeadingTwo",
+       "value":[
+          {
+             "id":"1ce33593-43fb-4dba-9c94-9845f55874df",
+             "type":"heading-two",
+             "children":[
+                {
+                   "text":"Conclusión"
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":24
+       }
+    },
+    "ab2a472a-fbe2-4567-b0d6-2e18a697d92a":{
+       "id":"ab2a472a-fbe2-4567-b0d6-2e18a697d92a",
+       "type":"Paragraph",
+       "value":[
+          {
+             "id":"dabb145e-b3c3-4fc1-83fa-5fa5d45df2de",
+             "type":"paragraph",
+             "children":[
+                {
+                   "text":"Java es un lenguaje versátil, potente y ampliamente utilizado en el mundo del desarrollo de software. Su portabilidad, seguridad y robustez lo convierten en una opción ideal para proyectos de cualquier tamaño."
+                }
+             ],
+             "props":{
+                "nodeType":"block"
+             }
+          }
+       ],
+       "meta":{
+          "align":"left",
+          "depth":0,
+          "order":25
+       }
+    },
+    "609458f5-f1c0-4edb-b303-01ef68128b46":{
+       "id":"609458f5-f1c0-4edb-b303-01ef68128b46",
+       "type":"Image",
+       "meta":{
+          "depth":0,
+          "order":2
+       },
+       "value":[
+          {
+             "id":"36d438a1-0ae4-42e0-8724-77915b4eeb90",
+             "type":"image",
+             "props":{
+                "src":"https://www.synergisticit.com/wp-content/uploads/2020/08/Major-Industries-Ruled-by-Java_2.webp",
+                "alt":null,
+                "srcSet":null,
+                "bgColor":null,
+                "fit":"contain",
+                "sizes":{
+                   "width":400,
+                   "height":400
+                },
+                "nodeType":"void"
+             },
+             "children":[
+                {
+                   "text":""
+                }
+             ]
+          }
+       ]
+    },
+    "1807714f-6a9a-491d-9bbf-cb36fee5bbfb":{
+       "id":"1807714f-6a9a-491d-9bbf-cb36fee5bbfb",
+       "type":"Divider",
+       "meta":{
+          "depth":0,
+          "order":9
+       },
+       "value":[
+          {
+             "id":"47dda830-c1b6-4e56-a9db-15abb8d8e81c",
+             "type":"divider",
+             "props":{
+                "nodeType":"void",
+                "theme":"solid",
+                "color":"#EFEFEE"
+             },
+             "children":[
+                {
+                   "text":""
+                }
+             ]
+          }
+       ]
     }
-}
+ }

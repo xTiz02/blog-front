@@ -143,13 +143,18 @@ function PublishDialog({data}:{data:YooptaContentValue}) {
       .catch(err => console.error(err))
 
     }
-
+    const onPublish = () => {
+     
+      //const parsedData = data as YooptaContentValue;
+      //editor.setEditorValue(parsedData);
+      console.log(data);
+    }
 
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Publish</Button>
+        <Button variant="outline" onClick={onPublish}>Publish</Button>
       </DialogTrigger>
       <DialogContent className="flex flex-col gap-0 p-0 sm:max-h-[min(640px,80vh)] sm:max-w-lg [&>button:last-child]:hidden">
         <ScrollArea className="flex min-h-full flex-col">

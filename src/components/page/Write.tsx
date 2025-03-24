@@ -22,12 +22,12 @@ import PublishDialog from './PublishDialog';
 const plugins = [Paragraph, 
   HeadingOne.extend({
     options: {
-      HTMLAttributes: {
-        className : "text-amber-400"
-        // style: {
-        //  color: 'red',
-        // }
-      }
+      // HTMLAttributes: {
+      //   className : "text-amber-400"
+      //   // style: {
+      //   //  color: 'red',
+      //   // }
+      // }
     }
   })
   , HeadingTwo, HeadingThree, Blockquote, Callout, 
@@ -70,12 +70,6 @@ function Write() {
 
   const [editorStyle, setEditorStyle] = useState<React.CSSProperties>({});
 
-  const onPublish = () => {
-    const editorContent = editor.getEditorValue();
-    //const parsedData = data as YooptaContentValue;
-    //editor.setEditorValue(parsedData);
-    console.log(editorContent);
-  }
 
   useEffect(() => {
     const updateStyles = () => {
